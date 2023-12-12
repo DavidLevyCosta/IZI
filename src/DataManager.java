@@ -26,7 +26,8 @@ public class DataManager {
 			return null;
 		}
 	}
-	
+
+
 	public ProdutoInfo GetSearchedList(ArrayList<ProdutoInfo> produto_list, int cod_produto) {
 			
 		return produto_list.get(cod_produto);
