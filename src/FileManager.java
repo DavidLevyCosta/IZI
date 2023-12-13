@@ -10,6 +10,7 @@ import java.time.format.*;
 import java.util.ArrayList;
 import java.lang.StringBuilder;
 
+@SuppressWarnings("ResultOfMethodCallIgnored")
 public class FileManager extends DataManager{
 	
 	final byte columns = 6;
@@ -54,11 +55,11 @@ public class FileManager extends DataManager{
                             sb.append(';');
                             break;
                         case 2:
-                            sb.append(produtoInfo.getValorCusto());
+                            sb.append(String.format("%.2f", produtoInfo.getValorCusto()));
                             sb.append(';');
                             break;
                         case 3:
-                            sb.append(produtoInfo.getValorVenda());
+                            sb.append(String.format("%.2f", produtoInfo.getValorVenda()));
                             sb.append(';');
                             break;
                         case 4:
@@ -160,6 +161,18 @@ public class FileManager extends DataManager{
 			product_filter = (dir, name) -> name.toLowerCase().startsWith("productlist_") && name.toLowerCase().endsWith(".txt");
 
 			directory = new File("db");
+
+			if (!directory.exists()) {
+				System.out.println("A pasta db não existe! Criando uma...");
+				try {
+					directory.mkdirs();
+				} catch (NullPointerException e) {
+					System.err.println("O caminho especificado é nulo!" + e.getMessage());
+				} catch (SecurityException e) {
+					System.err.println("Não foi possível criar a pasta!" + e.getMessage());
+				}
+			}
+
 			File[] product_file = directory.listFiles(product_filter);
 
 			if (product_file != null) {
