@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Map;
 
+//Caio G, David L, Fabricio F, Priscilla G e Vitor C
 public class Program {
 
     static DataManager data_manager = new DataManager();
